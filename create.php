@@ -8,7 +8,7 @@
 <body class="bg-light">
 <div class="container mt-5">
   <h2 class="mb-4">Crear Nuevo Post</h2>
-  <form action="save_post.php" method="POST">
+  <form action="save_post.php" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="title" class="form-label">Título</label>
       <input type="text" name="title" id="title" class="form-control" required>
@@ -17,7 +17,6 @@
       <label for="content" class="form-label">Contenido</label>
       <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
     </div>
-
     <div class="mb-3">
     <label for="image" class="form-label">Imagen</label>
     <input type="file" name="image" id="image" class="form-control" accept="image/*">

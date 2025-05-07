@@ -8,7 +8,7 @@ $imag = null;
 
 // Verificar si se subió una imagen
 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-    $upload_dir = 'uploads';
+    $upload_dir = 'uploads/';
     
     // Crear la carpeta si no existe
     if (!is_dir($upload_dir)) {
