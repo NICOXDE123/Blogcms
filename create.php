@@ -9,7 +9,7 @@
 <div class="container mt-5">
   <h2 class="mb-4">Crear Nuevo Post</h2>
   <form action="save_post.php" method="POST" enctype="multipart/form-data">
-    
+
     <div class="mb-3">
       <label for="title" class="form-label">Título</label>
       <input type="text" name="title" id="title" class="form-control" required>
@@ -22,8 +22,10 @@
 
     <div class="mb-3">
       <label for="imagen" class="form-label">Imagen (opcional)</label>
-      <input type="file" name="imagen" id="imagen" class="form-control">
+      <input type="file" name="imagen" id="imagen" class="form-control" accept="image/jpeg, image/png, image/gif">
+      <small class="text-muted">Formatos aceptados: JPG, PNG, GIF. Máximo 5MB.</small>
     </div>
+
 
     <button type="submit" class="btn btn-success">Guardar</button>
     <a href="index.html" class="btn btn-secondary">Inicio</a>
