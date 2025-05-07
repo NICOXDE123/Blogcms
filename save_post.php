@@ -1,43 +1,29 @@
 <?php
 require 'db.php';
 
-// Verifica si se envió el formulario por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = trim($_POST['title']);
-    $content = trim($_POST['content']);
-    $imagen = '';
+  $title = $_POST['title'];
+  $content = $_POST['content'];
+  $imagen = '';
 
-    // Procesar imagen si se subió
-    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-        $nombreTmp = $_FILES['imagen']['tmp_name'];
-        $nombreOriginal = basename($_FILES['imagen']['name']);
-        $rutaDestino = 'uploads/' . $nombreOriginal;
+  if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+    $nombreTmp = $_FILES['imagen']['tmp_name'];
+    $nombreArchivo = basename($_FILES['imagen']['name']);
+    $ruta = 'uploads/' . $nombreArchivo;
 
-        // Mover el archivo a la carpeta /uploads
-        if (move_uploaded_file($nombreTmp, $rutaDestino)) {
-            $imagen = $nombreOriginal;  // Solo guardamos el nombre del archivo
-        } else {
-            echo "Error al subir la imagen.";
-            exit;
-        }
+    if (move_uploaded_file($nombreTmp, $ruta)) {
+      $imagen = $nombreArchivo;
     }
+  }
 
-    // Insertar datos en la base
-    $stmt = $conn->prepare("INSERT INTO posts (title, content, imag) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $title, $content, $imagen);
+  $sql = "INSERT INTO posts (title, content, imag) VALUES ('$title', '$content', '$imagen')";
 
-    if ($stmt->execute()) {
-        header("Location: post.php");
-        exit;
-    } else {
-        echo "Error al guardar el post: " . $stmt->error;
-    }
+  if ($conn->query($sql) === TRUE) {
+    echo "Post guardado correctamente.";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
 
-    $stmt->close();
-    $conn->close();
-
-    header("Location: posts.php");
-    exit();
+  $conn->close();
 }
-
 ?>
