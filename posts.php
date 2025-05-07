@@ -3,30 +3,36 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Lista de Posts</title>
+  <title>Publicaciones</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-<div class="container mt-5">
-  <h2 class="mb-4">Posts del Blog</h2>
-  <a href="create.php" class="btn btn-primary mb-3">Crear nuevo post</a>
-  <a href="index.html" class="btn btn-secondary mb-3">Inicio</a>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Inicio</a>
+    <a class="btn btn-outline-light" href="create.php">Crear Post</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 class="mb-4">Lista de Publicaciones</h1>
 
   <?php
-  $result = $conn->query("SELECT * FROM posts ORDER BY created_at DESC");
-  while($row = $result->fetch_assoc()):
+  $result = $conn->query("SELECT * FROM posts ORDER BY id DESC");
+  while ($row = $result->fetch_assoc()):
   ?>
     <div class="card mb-3">
-    <?php if (!empty($row['image'])): ?>
-      <img src="<?php echo htmlspecialchars($row['image']); ?>" class="card-img-top" alt="imagen del post" style="max-height: 400px; object-fit: cover;">
-    <?php endif; ?>
+      <?php if (!empty($row['imag'])): ?>
+        <img src="<?= htmlspecialchars($row['imag']) ?>" class="card-img-top" style="max-height: 400px; object-fit: cover;" alt="Imagen del post">
+      <?php endif; ?>
       <div class="card-body">
-        <h5 class="card-title"><?php echo htmlspecialchars($row['title']); ?></h5>
-        <p class="card-text"><?php echo nl2br(htmlspecialchars($row['content'])); ?></p>
-        <p class="card-text"><small class="text-muted">Publicado: <?php echo $row['created_at']; ?></small></p>
+        <h3 class="card-title"><?= htmlspecialchars($row['title']) ?></h3>
+        <p class="card-text"><?= nl2br(htmlspecialchars($row['content'])) ?></p>
       </div>
     </div>
   <?php endwhile; ?>
 </div>
+
 </body>
 </html>
