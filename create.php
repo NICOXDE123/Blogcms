@@ -9,17 +9,20 @@
 <div class="container mt-5">
   <h2 class="mb-4">Crear Nuevo Post</h2>
   <form action="save_post.php" method="POST" enctype="multipart/form-data">
+    
     <div class="mb-3">
       <label for="title" class="form-label">Título</label>
       <input type="text" name="title" id="title" class="form-control" required>
     </div>
+
     <div class="mb-3">
       <label for="content" class="form-label">Contenido</label>
       <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
     </div>
+
     <div class="mb-3">
-    <label for="image" class="form-label">Imagen</label>
-    <input type="file" name="image" id="image" class="form-control" accept="image/*">
+      <label for="imagen" class="form-label">Imagen (opcional)</label>
+      <input type="file" name="imagen" id="imagen" class="form-control">
     </div>
 
     <button type="submit" class="btn btn-success">Guardar</button>
