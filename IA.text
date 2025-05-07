@@ -1,0 +1,102 @@
+La IA me ayudó a redactar contenido ilustrativo para mostrar cómo funciona el sistema de publicaciones. Por ejemplo:
+
+Título: Cómo Empezar con PHP y MySQL
+Contenido generado:
+"PHP y MySQL son tecnologías fundamentales para el desarrollo web. En este post, aprenderás a configurar un entorno local con XAMPP/WAMP, crear una base de datos y 
+conectar PHP para gestionar contenido dinámico. ¡Perfecto para principiantes!"
+Este tipo de texto fue útil para probar el sistema de entrada y visualización de datos de manera profesional y clara.
+
+2. Cambios Implementados con Ayuda de la IA
+A. Correcciones de Seguridad y Funcionalidad
+Protección contra SQL Injection:
+Originalmente, las consultas se hacían con variables sin proteger:
+
+php
+Copiar
+Editar
+//$query = "INSERT INTO posts (title, content) VALUES ('$_POST[title]', '$_POST[content]')";
+Con la ayuda de la IA, lo reemplacé por una consulta preparada más segura:/*
+
+php
+Copiar
+Editar
+//$stmt = $conn->prepare("INSERT INTO posts (title, content) VALUES (?, ?)");
+$stmt->bind_param("ss", $title, $content);//
+
+Validación de datos:
+Se implementó la verificación de campos vacíos antes de procesar la información:
+php
+Copiar
+Editar
+if (empty($title) || empty($content)) {
+    die("Todos los campos son obligatorios");
+}
+
+B. Mejora en la Estructura del Proyecto
+Renombrado de archivos:
+Se renombró index.html a index.php para que pueda incluir funcionalidades dinámicas de PHP.
+
+Organización modular:
+Se separó la lógica del código en archivos independientes:
+
+db.php: conexión a la base de datos.
+
+save_post.php: procesamiento del formulario.
+
+post.php: visualización de publicaciones.
+
+Redirección post-guardado:
+En lugar de mostrar un mensaje plano, ahora el usuario es redirigido automáticamente a la lista de publicaciones:
+
+php
+Copiar
+Editar
+header("Location: post.php");
+exit();
+C. Optimización de la Interfaz de Usuario
+Se aplicó Bootstrap 5 para hacer el blog responsive y visualmente profesional:
+
+html
+Copiar
+Editar
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+//Se agregaron clases CSS para mejorar la presentación de las tarjetas de publicaciones.
+
+Se incorporó una funcionalidad en JavaScript para ampliar imágenes en pantalla al hacer clic sobre ellas, simulando un visor tipo lightbox sin plugins externos.
+
+3. Problemas Resueltos con Ayuda de la IA
+Código PHP visible:
+El error se produjo al abrir archivos directamente con file:///, en lugar de usar http://localhost/.
+➤ La IA sugirió usar siempre http://localhost/ para que PHP funcione correctamente a través de Apache.
+
+Errores de conexión a la base de datos:
+Se resolvieron añadiendo correctamente el require 'db.php'; en cada archivo que lo necesitaba.
+
+Nombres de campos inconsistentes:
+Inicialmente se mezclaban $_POST['titulo'] con name="title" en formularios.
+➤ La IA sugirió unificar a title y content para evitar errores.
+
+4. Resultado Final
+Funcionalidades logradas:
+
+✅ Crear, guardar y listar publicaciones
+
+✅ Subir imágenes con validación
+
+✅ Eliminar posts junto con sus imágenes
+
+✅ Diseño adaptativo con Bootstrap
+
+✅ Interacción visual con ampliación de imágenes
+
+✅ Seguridad básica (validación y consultas preparadas)
+
+Demo local:
+
+txt
+Copiar
+Editar
+http://localhost/taller_3/post.php
+5. Conclusión
+La inteligencia artificial fue clave para acelerar el desarrollo, corregir errores técnicos, mejorar la estructura del código, sugerir mejores prácticas y 
+aportar contenido y funcionalidades modernas. Usando tanto ChatGPT como DeepSeek, logré un blog funcional, seguro y con una experiencia de usuario optimizada.
