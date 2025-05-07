@@ -4,18 +4,19 @@ require 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
   $id = intval($_POST['id']);
 
-  // Primero obtenemos el nombre de la imagen (si existe) para borrarla también
+  // Verifica que el ID sea válido
   $res = $conn->query("SELECT imag FROM posts WHERE id = $id");
+
   if ($res && $res->num_rows > 0) {
-    $row = $resfetch_assoc();
+    $row = $res->fetch_assoc();
     $imagen = $row['imag'];
 
-    // Eliminamos imagen del servidor si existe
+    // Elimina imagen física si existe
     if (!empty($imagen) && file_exists("uploads/$imagen")) {
       unlink("uploads/$imagen");
     }
 
-    // Eliminamos el post de la base de datos
+    // Elimina el post de la base de datos
     $conn->query("DELETE FROM posts WHERE id = $id");
   }
 }
