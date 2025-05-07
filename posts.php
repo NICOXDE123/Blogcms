@@ -20,6 +20,7 @@
 
   <?php
   $result = $conn->query("SELECT * FROM posts ORDER BY id DESC");
+  
   while ($row = $result->fetch_assoc()):
   ?>
     <div class="card mb-3">
@@ -33,6 +34,11 @@
       <div class="card-body">
         <h3 class="card-title"><?= htmlspecialchars($row['title']) ?></h3>
         <p class="card-text"><?= nl2br(htmlspecialchars($row['content'])) ?></p>
+        <!-- 🔴 Botón para eliminar el post -->
+    <form action="delete_post.php" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este post?');">
+      <input type="hidden" name="id" value="<?= $row['id'] ?>">
+      <button type="submit" class="btn btn-danger btn-sm mt-2">Eliminar</button>
+    </form>
       </div>
     </div>
   <?php endwhile; ?>
