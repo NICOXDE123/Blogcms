@@ -23,9 +23,13 @@
   while ($row = $result->fetch_assoc()):
   ?>
     <div class="card mb-3">
-      <?php if (!empty($row['imag'])): ?>
-        <img src="<?= htmlspecialchars($row['imag']) ?>" class="card-img-top" style="max-height: 400px; object-fit: cover;" alt="Imagen del post">
-      <?php endif; ?>
+    <div class="card mb-3">
+  <?php if (!empty($row['imag'])): ?>
+    <img src="uploads/<?= htmlspecialchars($row['imag']) ?>"
+         class="card-img-top"
+         style="height: 200px; object-fit: cover; width: 100%;"
+         alt="Imagen del post">
+  <?php endif; ?>
       <div class="card-body">
         <h3 class="card-title"><?= htmlspecialchars($row['title']) ?></h3>
         <p class="card-text"><?= nl2br(htmlspecialchars($row['content'])) ?></p>
