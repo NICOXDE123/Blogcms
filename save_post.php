@@ -3,11 +3,10 @@ require 'db.php';
 
 $title = $_POST['title'];
 $content = $_POST['content'];
-$imag = $_POST['image']
+$imag = $_POST['image']; // ← punto y coma
 
-
-$stmt = $conn->prepare("INSERT INTO posts (title, content,´imag´) VALUES (?, ?)");
-$stmt->bind_param("ss", $title, $content);
+$stmt = $conn->prepare("INSERT INTO posts (title, content, imag) VALUES (?, ?, ?)"); // ← corregido
+$stmt->bind_param("sss", $title, $content, $imag); // ← tres valores
 $stmt->execute();
 
 $stmt->close();
