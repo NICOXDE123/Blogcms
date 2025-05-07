@@ -18,10 +18,10 @@
       <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
     </div>
     <div class="mb-3">
-    <label for="image" class="form-label">Imagen</label>
-    <input type="file" name="image" id="image" class="form-control" accept="image/*">
+    <label for="imagen" class="form-label">Imagen (opcional)</label>
+    <input type="file" name="imagen" i="imagen" class="form-control">
     </div>
-
+    
     <button type="submit" class="btn btn-success">Guardar</button>
     <a href="index.html" class="btn btn-secondary">Inicio</a>
   </form>
