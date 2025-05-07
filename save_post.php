@@ -6,7 +6,7 @@ $content = $_POST['content'];
 $imag = $_POST['image']
 
 
-$stmt = $conn->prepare("INSERT INTO posts (title, content) VALUES (?, ?)");
+$stmt = $conn->prepare("INSERT INTO posts (title, content,´imag´) VALUES (?, ?)");
 $stmt->bind_param("ss", $title, $content);
 $stmt->execute();
 

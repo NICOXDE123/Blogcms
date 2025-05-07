@@ -16,11 +16,12 @@
     <div class="mb-3">
       <label for="content" class="form-label">Contenido</label>
       <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
+    </div>
 
     <div class="mb-3">
     <label for="image" class="form-label">Imagen</label>
     <input type="file" name="image" id="image" class="form-control" accept="image/*">
-  </div>
+    </div>
 
     <button type="submit" class="btn btn-success">Guardar</button>
     <a href="index.html" class="btn btn-secondary">Inicio</a>
