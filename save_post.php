@@ -1,6 +1,11 @@
 <?php
 require 'db.php';
 
+echo "<pre>";
+print_r($_FILES);
+echo "</pre>";
+// exit(); // Descomenta para ver solo la info del archivo
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validar datos del formulario
     $title = $conn->real_escape_string($_POST['title']);
