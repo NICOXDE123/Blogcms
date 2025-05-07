@@ -16,7 +16,7 @@
 </nav>
 
 <div class="container">
-  <h1 class="mb-4">Lista de Publicaciones</h1>
+  <h1 class="mb-4">Ver post</h1>
 
   <?php
   $result = $conn->query("SELECT * FROM posts ORDER BY id DESC");
